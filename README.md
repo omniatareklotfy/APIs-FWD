@@ -2,8 +2,7 @@
 
 ## FWD API Automation Testing
 ### Firstly, there are 2 projects (Test fakerestapi.azurewebsites APIs , Test TRELLO REST APIs)
--- You can follow the Test Cases from the Test Cases File
-
+-- Any Folder has (Test Cases File , Collection, Environment , Test Run by Postman, Generated Report by Newman)
 ### First One (Test fakerestapi.azurewebsites APIs)
 - Go to this website http://fakerestapi.azurewebsites.net/index.html
 - You need to get familiar with how to execute requests on Swagger before going to Postman.
