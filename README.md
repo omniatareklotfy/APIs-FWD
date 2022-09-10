@@ -1,4 +1,4 @@
-# APIs-FWD
+# API Automation Testing
 
 ## FWD API Automation Testing
 ### Firstly, there are 2 projects (Test fakerestapi.azurewebsites APIs , Test TRELLO REST APIs)
