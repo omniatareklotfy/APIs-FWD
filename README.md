@@ -37,16 +37,16 @@
 * You will also realize that those two should be used as query parameters (you will find this info under this section "Authorization via Query Parameters" on this page at the end).
 - So now we already know how Authorization works but we need to know how to get those key, token values for your account, click on this link shown on the page, https://trello.com/app-key/, you will find it at the beginning of the page under the section "Authorizing A Client". It should direct you to another page that contains your credentials, key, and token.
 
-## Using Postman Scripts
+### Using Postman Scripts
 
-## Using Newman to Generate Reports
+### Using Newman to Generate Reports
 
-### Installation
+#### Installation
  - npm install -g newman
  - npm install -g newman-reporter-htmlextra
-### Running
+#### Running
  - newman run collection.json -e environment.json
-### Running with Generate Report
+#### Running with Generate Report
  - newman run collection.json -r htmlextra
  - newman run collection.json -e env.json --reporters cli,junit,htmlextra --reporter-htmlextra-export reportName.html
  /*newman run WATCHiT_APIs_Testing.json -e WATCHiT_Staging.json --reporters cli,junit,htmlextra --reporter-htmlextra-export Automation-APIs-WatchIT.html*/
