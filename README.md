@@ -1,9 +1,9 @@
 # APIs-FWD
 
-# FWD API Automation Testing
-# Firstly, there are 2 projects (Test fakerestapi.azurewebsites APIs , Test TRELLO REST APIs)
+## FWD API Automation Testing
+### Firstly, there are 2 projects (Test fakerestapi.azurewebsites APIs , Test TRELLO REST APIs)
 
-## First One (Test fakerestapi.azurewebsites APIs)
+### First One (Test fakerestapi.azurewebsites APIs)
 Go to this website http://fakerestapi.azurewebsites.net/index.html
 You need to get familiar with how to execute requests on Swagger before going to Postman.
 We will focus on requests under the "Authors" section.
@@ -14,7 +14,7 @@ Click on "Try it out" then click on "Execute".
 Note that you won't be able to write test cases on Swagger unlike Postman, so we are only testing with our eyes and use Notepad or any Editor to log our test case results.
 You can follow the Test Cases from the Test Cases File
 
-## Second One (Test TRELLO REST APIs)
+### Second One (Test TRELLO REST APIs)
 SignUp with a new account on https://trello.com/.
 Login and explore Trello UI before working on APIs.
 Learn how to add boards inside the default workspace.
@@ -22,7 +22,7 @@ Inside each Board, there are 3 lists created by default [To Do, Doing, Done], yo
 Under each list, you could add cards, move cards from one list to another, Archive Cards, and many other actions.
 Take a screenshot of the new lists, and cards you have created.
 
-# Get your credential values and try the first Trello API.
+#### Get your credential values and try the first Trello API.
 Create a workspace for "Trello".
 Create a new collection with any name.
 Try this first request, https://api.trello.com/1/members/me.
@@ -41,12 +41,12 @@ So now we already know how Authorization works but we need to know how to get th
 
 ## Using Newman to Generate Reports
 
-# Installation
+### Installation
  - npm install -g newman
  - npm install -g newman-reporter-htmlextra
- # Running
+### Running
  - newman run collection.json -e environment.json
-# Running with Generate Report
+### Running with Generate Report
  - newman run collection.json -r htmlextra
  - newman run collection.json -e env.json --reporters cli,junit,htmlextra --reporter-htmlextra-export reportName.html
  /*newman run WATCHiT_APIs_Testing.json -e WATCHiT_Staging.json --reporters cli,junit,htmlextra --reporter-htmlextra-export Automation-APIs-WatchIT.html*/
