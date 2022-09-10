@@ -2,6 +2,7 @@
 
 ## FWD API Automation Testing
 ### Firstly, there are 2 projects (Test fakerestapi.azurewebsites APIs , Test TRELLO REST APIs)
+-- You can follow the Test Cases from the Test Cases File
 
 ### First One (Test fakerestapi.azurewebsites APIs)
 - Go to this website http://fakerestapi.azurewebsites.net/index.html
@@ -12,7 +13,6 @@
 - Click on "Try it out" then click on "Execute".
 - "Responses" section will be displayed including some response components like (Code, Response body then Response headers).
 - Note that you won't be able to write test cases on Swagger unlike Postman, so we are only testing with our eyes and use Notepad or any Editor to log our test case results.
-- You can follow the Test Cases from the Test Cases File
 
 ### Second One (Test TRELLO REST APIs)
 - SignUp with a new account on https://trello.com/.
@@ -36,6 +36,7 @@
 * token=value
 * You will also realize that those two should be used as query parameters (you will find this info under this section "Authorization via Query Parameters" on this page at the end).
 - So now we already know how Authorization works but we need to know how to get those key, token values for your account, click on this link shown on the page, https://trello.com/app-key/, you will find it at the beginning of the page under the section "Authorizing A Client". It should direct you to another page that contains your credentials, key, and token.
+
 
 ### Using Postman Scripts
 
