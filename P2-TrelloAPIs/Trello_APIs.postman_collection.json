@@ -1,0 +1,515 @@
+{
+	"info": {
+		"_postman_id": "64415f42-3d76-4035-9118-8a157b6b3612",
+		"name": "Trello APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2818730"
+	},
+	"item": [
+		{
+			"name": "Board",
+			"item": [
+				{
+					"name": "1.Create Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//3- verify the most important parameters and confirm its default values like closed is false.\r",
+									"pm.test(\"Assert that the permissionLevel should be private\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.prefs.permissionLevel).to.eql(\"private\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Assert that canBePublic is true\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.prefs.canBePublic).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Assert that canInvite is true\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.prefs.canInvite).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followOriginalHttpMethod": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/1/boards/?key={{Key}}&token={{token}}&name={{boardName}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								""
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "name",
+									"value": "{{boardName}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.Boards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Assert to get the first and last board from idBoards that are returned\r",
+									"pm.test(\"Assert that the returned boards\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var length_idBoards = jsonData.idBoards.length;\r",
+									"    var FirstBoardID = jsonData.idBoards[0];\r",
+									"    var LastBoardID = jsonData.idBoards[length_idBoards - 1];\r",
+									"\r",
+									"    for (var i = 0; i < length_idBoards; i++) {\r",
+									"    }\r",
+									"    console.log(\"The Total Number of Boards that returned is = \" + length_idBoards);\r",
+									"    console.log(\"The First Boards that returned is = \" + FirstBoardID);\r",
+									"    console.log(\"The Last Boards that returned is = \" + LastBoardID);\r",
+									"\r",
+									"    // Get the values of (first board, last board) in the environment variable\r",
+									"    pm.environment.set(\"FirstBoardID\", FirstBoardID);\r",
+									"    pm.environment.set(\"LastBoardID\", LastBoardID);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/1/members/me?boards=open&key={{Key}}&token={{token}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"1",
+								"members",
+								"me"
+							],
+							"query": [
+								{
+									"key": "boards",
+									"value": "open"
+								},
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Lists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Assert to get the first and last lists from the first board\r",
+									"pm.test(\"Assert on the first an last lists that are being returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var length_idLists = jsonData.length;\r",
+									"    var FirstListID = jsonData[0].id;\r",
+									"    var LastListID = jsonData[length_idLists - 1].id;\r",
+									"\r",
+									"    for (var i = 0; i < length_idLists; i++) {\r",
+									"    }\r",
+									"    console.log(\"The Total Number of lists that returned is = \" + length_idLists);\r",
+									"    console.log(\"The First Boards that returned is = \" + FirstListID);\r",
+									"    console.log(\"The Last Boards that returned is = \" + LastListID);\r",
+									"\r",
+									"    // Get the values of (first list , last list) in the environment variable\r",
+									"    pm.environment.set(\"FirstListID\", FirstListID);\r",
+									"    pm.environment.set(\"LastListID\", LastListID);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"// Assert on the default three lists (TO DO ,DOING, DONE)\r",
+									"pm.test(\"Assert on the default lists\", function () {\r",
+									"    pm.test(\"Assert on the default lists on the board\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        var length_nameLists = jsonData.length;\r",
+									"\r",
+									"        for (var i = 0; i < length_nameLists; i++) {\r",
+									"        }\r",
+									"        pm.expect(jsonData[length_nameLists - 1].name).eql(\"Done\");\r",
+									"        pm.expect(jsonData[length_nameLists - 2].name).eql(\"Doing\");\r",
+									"        pm.expect(jsonData[length_nameLists - 3].name).eql(\"To Do\");\r",
+									"\r",
+									"\r",
+									"    });\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/1/boards/{{FirstBoardID}}/lists?key={{Key}}&token={{token}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"{{FirstBoardID}}",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lists",
+			"item": [
+				{
+					"name": "Create a List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Verify the id key is exist in the response\r",
+									"pm.test(\"Assert that the id should be returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id);\r",
+									"});\r",
+									"\r",
+									"// Verify the name key is exist in the response\r",
+									"pm.test(\"Assert that the name should be returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name);\r",
+									"});\r",
+									"\r",
+									"// Verify the idBoard key is exist in the response\r",
+									"pm.test(\"Assert that the idBoard should be returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.idBoard);\r",
+									"});\r",
+									"\r",
+									"// Verify the closed is returned by false value in the response\r",
+									"pm.test(\"Assert that the closed is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.closed).eql(false);\r",
+									"});\r",
+									"\r",
+									"// Verify the limits is empty object in the response\r",
+									"pm.test(\"Assert that the limits is empty object\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.limits).to.be.a(\"Object\").empty;\r",
+									"});\r",
+									"\r",
+									"// get the list id and put it in a variable idList\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"idList\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/1/lists?idBoard={{FirstBoardID}}&name={{listName}}&key={{Key}}&token={{token}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"1",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "idBoard",
+									"value": "{{FirstBoardID}}"
+								},
+								{
+									"key": "name",
+									"value": "{{listName}}"
+								},
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Created List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Verify the id key is exist in the response\r",
+									"pm.test(\"Assert that the id should be returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id);\r",
+									"});\r",
+									"\r",
+									"// Verify the name key is exist in the response\r",
+									"pm.test(\"Assert that the name should be returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name);\r",
+									"});\r",
+									"\r",
+									"// Verify the idBoard key is exist in the response\r",
+									"pm.test(\"Assert that the idBoard should be returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.idBoard);\r",
+									"});\r",
+									"\r",
+									"// Verify the closed is returned by false value in the response\r",
+									"pm.test(\"Assert that the closed is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.closed).eql(false);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/1/lists/{{idList}}?key={{Key}}&token={{token}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"{{idList}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive or Unarchive List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// verify the response header has key of \"Set-Cookie\"\r",
+									"pm.test(\"Set-Cookie is returned in the response header \", function () {\r",
+									"    pm.response.to.have.header(\"Set-Cookie\");\r",
+									"    //.contains(\"isEnterpriseAdmin\");\r",
+									"});\r",
+									"\r",
+									"// verify the value of \"Set-Cookie\" contains \"isEnterpriseAdmin%3Dfalse\"\r",
+									"pm.test(\"Set-Cookie contains isEnterpriseAdmin \", function () {\r",
+									"    pm.environment.set(\"cookie\", pm.response.headers.get(\"Set-Cookie\"));\r",
+									"    pm.expect(pm.environment.get(\"cookie\")).to.include('isEnterpriseAdmin');\r",
+									"});\r",
+									"\r",
+									"// Verify the value key is false in the response -- it is unarchived\r",
+									"pm.test(\"Assert that the if the value is false, it is unrachived\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData._value).false;\r",
+									"});\r",
+									"\r",
+									"// Verify the value key is true in the response -- it is archived\r",
+									"pm.test(\"Assert that the if the value is true, it is unrachived\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData._value).true;\r",
+									"});\r",
+									"\r",
+									"// Verify the archiving / unarchiving with the consolue log\r",
+									"pm.test(\"Assert on value and log the result on the console log archived or unarchived\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    if (pm.expect(jsonData._value) == true)\r",
+									"        console.log('archived');\r",
+									"\r",
+									"    else {\r",
+									"        pm.expect(jsonData._value) == false;\r",
+									"        console.log('unrachived');\r",
+									"    }\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/1/lists/{{idList}}/closed?key={{Key}}&token={{token}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"{{idList}}",
+								"closed"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.Delete Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert on the response body\", function () {\r",
+							"    pm.response.to.have.body(\"removed\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/1/boards/{{FirstBoardID}}?key={{Key}}&token={{token}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{FirstBoardID}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{Key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

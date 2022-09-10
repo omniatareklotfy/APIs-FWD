@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Trello APIs" tests="7" time="3.272">
+  <testsuite name="Board / 1.Create Board" id="5ea17084-cffc-4239-ad60-a83d97bdf0cc" timestamp="2022-09-10T15:38:20.401Z" tests="4" failures="0" errors="0" time="0.832">
+    <testcase name="Status code is 200" time="0.832" classname="TrelloApIs"/>
+    <testcase name="Assert that the permissionLevel should be private" time="0.832" classname="TrelloApIs"/>
+    <testcase name="Assert that canBePublic is true" time="0.832" classname="TrelloApIs"/>
+    <testcase name="Assert that canInvite is true" time="0.832" classname="TrelloApIs"/>
+  </testsuite>
+  <testsuite name="Board / 2.Boards" id="fd4bed65-9bfe-4df3-a68c-6625ef47c78d" timestamp="2022-09-10T15:38:20.401Z" tests="2" failures="0" errors="0" time="0.265">
+    <testcase name="Status code is 200" time="0.265" classname="TrelloApIs"/>
+    <testcase name="Assert that the returned boards" time="0.265" classname="TrelloApIs"/>
+  </testsuite>
+  <testsuite name="Board / Get All Lists" id="004ea49f-c7a1-4aef-800b-99d152f11772" timestamp="2022-09-10T15:38:20.401Z" tests="4" failures="0" errors="0" time="0.275">
+    <testcase name="Status code is 200" time="0.275" classname="TrelloApIs"/>
+    <testcase name="Assert on the first an last lists that are being returned" time="0.275" classname="TrelloApIs"/>
+    <testcase name="Assert on the default lists on the board" time="0.275" classname="TrelloApIs"/>
+    <testcase name="Assert on the default lists" time="0.275" classname="TrelloApIs"/>
+  </testsuite>
+  <testsuite name="Lists / Create a List" id="ec999556-49a3-4d92-8727-f65bca1ba6c1" timestamp="2022-09-10T15:38:20.401Z" tests="6" failures="0" errors="0" time="0.347">
+    <testcase name="Status code is 200" time="0.347" classname="TrelloApIs"/>
+    <testcase name="Assert that the id should be returned" time="0.347" classname="TrelloApIs"/>
+    <testcase name="Assert that the name should be returned" time="0.347" classname="TrelloApIs"/>
+    <testcase name="Assert that the idBoard should be returned" time="0.347" classname="TrelloApIs"/>
+    <testcase name="Assert that the closed is false" time="0.347" classname="TrelloApIs"/>
+    <testcase name="Assert that the limits is empty object" time="0.347" classname="TrelloApIs"/>
+  </testsuite>
+  <testsuite name="Lists / Get Created List" id="adb74ac8-a7e0-48d3-a087-dff1d27129d5" timestamp="2022-09-10T15:38:20.401Z" tests="5" failures="0" errors="0" time="0.259">
+    <testcase name="Status code is 200" time="0.259" classname="TrelloApIs"/>
+    <testcase name="Assert that the id should be returned" time="0.259" classname="TrelloApIs"/>
+    <testcase name="Assert that the name should be returned" time="0.259" classname="TrelloApIs"/>
+    <testcase name="Assert that the idBoard should be returned" time="0.259" classname="TrelloApIs"/>
+    <testcase name="Assert that the closed is false" time="0.259" classname="TrelloApIs"/>
+  </testsuite>
+  <testsuite name="Lists / Archive or Unarchive List" id="3e0eb7c6-1545-4ca1-a0a1-a0fa6f768af3" timestamp="2022-09-10T15:38:20.401Z" tests="6" failures="1" errors="0" time="0.332">
+    <testcase name="Status code is 200" time="0.332" classname="TrelloApIs"/>
+    <testcase name="Set-Cookie is returned in the response header " time="0.332" classname="TrelloApIs"/>
+    <testcase name="Set-Cookie contains isEnterpriseAdmin " time="0.332" classname="TrelloApIs"/>
+    <testcase name="Assert that the if the value is false, it is unrachived" time="0.332" classname="TrelloApIs"/>
+    <testcase name="Assert that the if the value is true, it is unrachived" time="0.332" classname="TrelloApIs">
+      <failure type="AssertionFailure" message="expected false to be true">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 64415f42-3d76-4035-9118-8a157b6b3612.]]>
+        <![CDATA[Collection name: Trello APIs.]]>
+        <![CDATA[Request name: Lists / Archive or Unarchive List.]]>
+        <![CDATA[Test description: Assert that the if the value is true, it is unrachived.]]>
+        <![CDATA[Error message: expected false to be true.]]>
+        <![CDATA[Stacktrace: AssertionError: expected false to be true
+   at Object.eval sandbox-script.js:5:6).]]>
+      </failure>
+    </testcase>
+    <testcase name="Assert on value and log the result on the console log archived or unarchived" time="0.332" classname="TrelloApIs"/>
+  </testsuite>
+  <testsuite name="3.Delete Board" id="d62fc6e0-7c15-4d60-9bb9-747d85071b85" timestamp="2022-09-10T15:38:20.401Z" tests="2" failures="1" errors="0" time="0.962">
+    <testcase name="Status code is 200" time="0.962" classname="TrelloApIs"/>
+    <testcase name="Assert on the response body" time="0.962" classname="TrelloApIs">
+      <failure type="AssertionFailure" message="expected response body to equal 'removed' but got '{&quot;_value&quot;:null}\n'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 64415f42-3d76-4035-9118-8a157b6b3612.]]>
+        <![CDATA[Collection name: Trello APIs.]]>
+        <![CDATA[Request name: 3.Delete Board.]]>
+        <![CDATA[Test description: Assert on the response body.]]>
+        <![CDATA[Error message: expected response body to equal 'removed' but got '{"_value":null}\n'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response body to equal 'removed' but got '{"_value":null}\n'
+   at Object.eval sandbox-script.js:2:7).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>

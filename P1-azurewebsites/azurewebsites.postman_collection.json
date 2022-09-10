@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "a20a6bee-ce25-4462-848a-1154eaa63412",
+		"name": "azurewebsites",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2818730"
+	},
+	"item": [
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Authors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TC1 - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"TC2 - Objects inside response contain, id, idBook, firstName, lastName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].id);\r",
+									"    pm.expect(jsonData[0].idBook);\r",
+									"    pm.expect(jsonData[0].firstName);\r",
+									"    pm.expect(jsonData[0].lastName);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"TC3 -Data Type inside response are Correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].id).to.be.a(\"number\");;\r",
+									"    pm.expect(jsonData[0].idBook).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData[0].firstName).to.be.a(\"String\");\r",
+									"    pm.expect(jsonData[0].lastName).to.be.a(\"String\");\r",
+									"});\r",
+									"\r",
+									"// Get the Author id to use it in the other requests\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"author_id\", jsonData[0].id);  // id"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/Authors",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Test Case 1: Register a new valid Author successfully and response code \"201\"\r",
+									"pm.test(\"TC1 -Response code should be 201 as Created\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"//Test Case 1: Register a new valid Author successfully and response status \"Created\"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"\r",
+									"//Test Case 2: firstname & lastname should be mandatory & response code should be 400 if firstname, lastname is missed in the request body\r",
+									"pm.test(\"TC2 -  firstname & lastname should be mandatory\", function () {\r",
+									"    var jsonReq = JSON.parse(pm.request.body); //req body\r",
+									"    if (jsonReq.firstName && jsonReq.lastName) {\r",
+									"        console.log(\"firstName =\" + jsonReq.firstName + \",\" + \"lastName = \" + jsonReq.lastName); //show fname, lname\r",
+									"    }\r",
+									"    else {\r",
+									"        pm.test(\"TC3 --Response code should be 400 as the firstName and lastName should be entered\", function () {\r",
+									"            pm.response.to.have.status(400);\r",
+									"        });\r",
+									"        console.log(\"First Name and Last Name are mandatory, You should fill the data firstly\");  // if else -- show this message\r",
+									"\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"// Get the idBook that created to use it in the other requests\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"idBook_Var\", jsonData.idBook);  // idBook_Var\r",
+									"console.log(\"idBook_Var = \" + jsonData.idBook);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 50,\r\n    \"idBook\": 50,\r\n    \"firstName\": \"ahmed\",\r\n    \"lastName\": \"lotfy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/Authors",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "idBook of Created Author",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// send the create author req firstly"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TC1 - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"// Test Case 1: Searching with valid idBook should return relative data in response body.\r",
+									"var jsonData = pm.response.json();\r",
+									"var idBook_Var = pm.environment.get(\"idBook_Var\");\r",
+									"for (var i = 0; i < jsonData.length; i++) {\r",
+									"    pm.expect(jsonData[0].idBook).to.eql(idBook_Var);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/Authors/authors/books/{{idBook_Var}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors",
+								"authors",
+								"books",
+								"{{idBook_Var}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Created Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TC1 - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"TC2 - Assert that id, idBook\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id);\r",
+									"    pm.expect(jsonData.idBook);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/Authors/{{idBook_Var}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors",
+								"{{idBook_Var}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//TC-1 Update (firstname, lastname) and confirm that Author's data in response is updated successfully.\r",
+									"pm.test(\"TC1 - Assert that firstName, lastName are updated successfully\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var jsonReq = JSON.parse(pm.request.body); //req body\r",
+									"\r",
+									"    pm.expect(jsonData.firstName).eql(jsonReq.firstName);\r",
+									"    pm.expect(jsonData.lastName).eql(jsonReq.lastName);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"TC2 - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{author_id}},\r\n  \"idBook\": {{idBook_Var}},\r\n  \"firstName\": \"Seven2\",\r\n  \"lastName\": \"Habits2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/Authors/{{author_id}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors",
+								"{{author_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/Authors/{{author_id}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors",
+								"{{author_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

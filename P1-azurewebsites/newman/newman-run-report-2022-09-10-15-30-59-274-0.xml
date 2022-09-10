@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="azurewebsites" tests="6" time="1.521">
+  <testsuite name="Authors / Authors" id="09c1be57-6df1-4024-9bf7-12dfff7ea67f" timestamp="2022-09-10T15:30:56.903Z" tests="3" failures="0" errors="0" time="0.702">
+    <testcase name="TC1 - Status code is 200" time="0.702" classname="Azurewebsites"/>
+    <testcase name="TC2 - Objects inside response contain, id, idBook, firstName, lastName" time="0.702" classname="Azurewebsites"/>
+    <testcase name="TC3 -Data Type inside response are Correct" time="0.702" classname="Azurewebsites"/>
+  </testsuite>
+  <testsuite name="Authors / Create Author" id="e6b0e980-f625-45db-a4f7-7fea1b30504c" timestamp="2022-09-10T15:30:56.903Z" tests="3" failures="2" errors="0" time="0.167">
+    <testcase name="TC1 -Response code should be 201 as Created" time="0.167" classname="Azurewebsites">
+      <failure type="AssertionFailure" message="expected response to have status code 201 but got 200">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a20a6bee-ce25-4462-848a-1154eaa63412.]]>
+        <![CDATA[Collection name: azurewebsites.]]>
+        <![CDATA[Request name: Authors / Create Author.]]>
+        <![CDATA[Test description: TC1 -Response code should be 201 as Created.]]>
+        <![CDATA[Error message: expected response to have status code 201 but got 200.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 201 but got 200
+   at Object.eval sandbox-script.js:1:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status code name has string" time="0.167" classname="Azurewebsites">
+      <failure type="AssertionFailure" message="expected response to have status reason 'Created' but got 'OK'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a20a6bee-ce25-4462-848a-1154eaa63412.]]>
+        <![CDATA[Collection name: azurewebsites.]]>
+        <![CDATA[Request name: Authors / Create Author.]]>
+        <![CDATA[Test description: Status code name has string.]]>
+        <![CDATA[Error message: expected response to have status reason 'Created' but got 'OK'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status reason 'Created' but got 'OK'
+   at Object.eval sandbox-script.js:2:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="TC2 -  firstname &amp; lastname should be mandatory" time="0.167" classname="Azurewebsites"/>
+  </testsuite>
+  <testsuite name="Authors / idBook of Created Author" id="15d79b86-837a-4fe2-b149-777989118351" timestamp="2022-09-10T15:30:56.903Z" tests="1" failures="0" errors="0" time="0.153">
+    <testcase name="TC1 - Status code is 200" time="0.153" classname="Azurewebsites"/>
+  </testsuite>
+  <testsuite name="Authors / Created Author" id="4371def3-b146-438d-829f-3a6fa4347acf" timestamp="2022-09-10T15:30:56.903Z" tests="2" failures="0" errors="0" time="0.141">
+    <testcase name="TC1 - Status code is 200" time="0.141" classname="Azurewebsites"/>
+    <testcase name="TC2 - Assert that id, idBook" time="0.141" classname="Azurewebsites"/>
+  </testsuite>
+  <testsuite name="Authors / Edit Author" id="bf064421-44e6-4f14-b654-a6ab744c54bb" timestamp="2022-09-10T15:30:56.903Z" tests="2" failures="0" errors="0" time="0.184">
+    <testcase name="TC1 - Assert that firstName, lastName are updated successfully" time="0.184" classname="Azurewebsites"/>
+    <testcase name="TC2 - Status code is 200" time="0.184" classname="Azurewebsites"/>
+  </testsuite>
+  <testsuite name="Authors / Delete Author" id="993a1fc3-2763-40dd-878a-85e5b8a13dfa" timestamp="2022-09-10T15:30:56.903Z" tests="0" failures="0" errors="0" time="0.174"/>
+</testsuites>

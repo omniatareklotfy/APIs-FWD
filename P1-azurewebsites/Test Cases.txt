@@ -1,0 +1,62 @@
+
+GET /api/v1/Authors (Authors)
+
+Test Case 1: Make sure the response is "200 OK".
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass
+ 
+Test Case 2: Objects inside response contain, id, idBook, firstName, lastName.
+ Expected Result: Objects inside response contain, id, idBook, firstName, lastName
+ Actual Result:   Objects inside response contain, id, idBook, firstName, lastName
+ Status: Pass
+ 
+Test Case 3: Data Types inside the response should match the sechema
+ Expected Result: id: number, idBook number, firstName: String, lastName: String
+ Actual Result:   id: number, idBook number, firstName: String, lastName: String
+ Status: Pass
+ ----------------------------------------------------------------------------------------
+ 
+ GET /api/v1/Authors/authors/books/{idBook} (idBook for created author)
+ 
+ Test Case 1: response should be 200 OK.
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass
+ 
+ Test Case 2: Searching with valid idBook should return relative data in response body.
+ Expected Result: Searching with valid idBook like 1 then all returned results in response body should contain idBook = 1 (same for idBook 2,3).
+ Actual Result:   All results contain the data that relative to the idBook 
+ Status: Pass
+ 
+ ---------------------------------------------------------------------------------------------------
+ PUT /api/v1/Authors/{id}  (Edit Author )
+ 
+ Test Case 1: Author's data is updated successfully.
+ Expected Result: After Updating (firstname, lastname), Author's data in response is updated successfully
+ Actual Result: Author's data in response is updated successfully
+ Status: Pass
+ 
+ Test Case 2: response should be 200 OK.
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass
+ 
+ -----------------------------------------------------------------------------------------------------
+ GET /api/v1/Authors/{id} (Created Author)
+ 
+ Test Case 1: response should be 200 OK.
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass
+ 
+ 
+ Test case 2: The author's data is changed in GET request.
+ Expected Result: name, id are returned on the response and changed
+ Actual Result: Same Expected
+ Status: Pass
+ 
+ 
+ 
+ 
+ 

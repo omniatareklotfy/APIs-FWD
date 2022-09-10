@@ -1,0 +1,231 @@
+{
+	"id": "71dfce2f-95f5-49d7-94a1-cf65ddc05cc5",
+	"name": "azurewebsites",
+	"timestamp": "2022-09-10T15:05:30.026Z",
+	"collection_id": "2818730-a20a6bee-ce25-4462-848a-1154eaa63412",
+	"folder_id": 0,
+	"environment_id": "2818730-3f5004ac-b89a-4abf-9746-4158b2f614f1",
+	"totalPass": 9,
+	"totalFail": 2,
+	"results": [
+		{
+			"id": "7f99933a-a0d8-49c7-82db-d1373cbbba37",
+			"name": "Authors",
+			"url": "http://fakerestapi.azurewebsites.net/api/v1/Authors",
+			"time": 188,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"TC1 - Status code is 200": true,
+				"TC2 - Objects inside response contain, id, idBook, firstName, lastName": true,
+				"TC3 -Data Type inside response are Correct": true
+			},
+			"testPassFailCounts": {
+				"TC1 - Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"TC2 - Objects inside response contain, id, idBook, firstName, lastName": {
+					"pass": 1,
+					"fail": 0
+				},
+				"TC3 -Data Type inside response are Correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				188
+			],
+			"allTests": [
+				{
+					"TC1 - Status code is 200": true,
+					"TC2 - Objects inside response contain, id, idBook, firstName, lastName": true,
+					"TC3 -Data Type inside response are Correct": true
+				}
+			]
+		},
+		{
+			"id": "34f54e07-293e-4e3d-942b-3bcac99dd656",
+			"name": "Create Author",
+			"url": "http://fakerestapi.azurewebsites.net/api/v1/Authors",
+			"time": 105,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"TC1 -Response code should be 201 as Created": false,
+				"Status code name has string": false,
+				"TC2 -  firstname & lastname should be mandatory": true
+			},
+			"testPassFailCounts": {
+				"TC1 -Response code should be 201 as Created": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Status code name has string": {
+					"pass": 0,
+					"fail": 1
+				},
+				"TC2 -  firstname & lastname should be mandatory": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				105
+			],
+			"allTests": [
+				{
+					"TC1 -Response code should be 201 as Created": false,
+					"Status code name has string": false,
+					"TC2 -  firstname & lastname should be mandatory": true
+				}
+			]
+		},
+		{
+			"id": "9968d322-8484-497c-bba9-09355af6f7e9",
+			"name": "idBook of Created Author",
+			"url": "http://fakerestapi.azurewebsites.net/api/v1/Authors/authors/books/50",
+			"time": 114,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"TC1 - Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"TC1 - Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				114
+			],
+			"allTests": [
+				{
+					"TC1 - Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "364314e5-2f1f-434f-866a-c0c2632e1a3c",
+			"name": "Created Author",
+			"url": "http://fakerestapi.azurewebsites.net/api/v1/Authors/50",
+			"time": 117,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"TC1 - Status code is 200": true,
+				"TC2 - Assert that id, idBook": true
+			},
+			"testPassFailCounts": {
+				"TC1 - Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"TC2 - Assert that id, idBook": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				117
+			],
+			"allTests": [
+				{
+					"TC1 - Status code is 200": true,
+					"TC2 - Assert that id, idBook": true
+				}
+			]
+		},
+		{
+			"id": "ecc37703-4727-49d3-93cb-8fb50e2620c5",
+			"name": "Edit Author",
+			"url": "http://fakerestapi.azurewebsites.net/api/v1/Authors/1",
+			"time": 112,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"TC1 - Assert that firstName, lastName are updated successfully": true,
+				"TC2 - Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"TC1 - Assert that firstName, lastName are updated successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"TC2 - Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				112
+			],
+			"allTests": [
+				{
+					"TC1 - Assert that firstName, lastName are updated successfully": true,
+					"TC2 - Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "4d1b9e4e-a58c-4041-afe9-b27e0dbf0b0f",
+			"name": "Delete Author",
+			"url": "http://fakerestapi.azurewebsites.net/api/v1/Authors/1",
+			"time": 131,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				131
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 767,
+	"collection": {
+		"requests": [
+			{
+				"id": "7f99933a-a0d8-49c7-82db-d1373cbbba37",
+				"method": "GET"
+			},
+			{
+				"id": "34f54e07-293e-4e3d-942b-3bcac99dd656",
+				"method": "POST"
+			},
+			{
+				"id": "9968d322-8484-497c-bba9-09355af6f7e9",
+				"method": "GET"
+			},
+			{
+				"id": "364314e5-2f1f-434f-866a-c0c2632e1a3c",
+				"method": "GET"
+			},
+			{
+				"id": "ecc37703-4727-49d3-93cb-8fb50e2620c5",
+				"method": "PUT"
+			},
+			{
+				"id": "4d1b9e4e-a58c-4041-afe9-b27e0dbf0b0f",
+				"method": "DELETE"
+			}
+		]
+	}
+}
