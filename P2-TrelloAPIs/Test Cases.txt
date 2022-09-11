@@ -1,0 +1,159 @@
+Create Board
+curl --request POST \ 
+--url 'https://api.trello.com/1/boards/?name={name}' 
+
+Test Case 1: Make sure the response is "200 OK".
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass 
+ 
+ ---------------------------------------------------------------------
+Test Case 2: Assert that the permission Level should be private
+ Expected Result: permissionLevel is private
+ Actual Result:   permissionLevel is private
+ Status: Pass 
+
+----------------------------------------------------------------------
+Test Case 3: Assert that the Can Be Public is True
+ Expected Result: canBePublic is True
+ Actual Result:   canBePublic is True
+ Status: Pass 
+
+----------------------------------------------------------------------
+Test Case 4: Assert that the Can Invite is True
+ Expected Result: canInvite is True
+ Actual Result:   canInvite is True
+ Status: Pass 
+ 
+ ----------------------------------------------------------------------------------------------------
+ Get Boards
+ curl --request GET \
+  --url 'https://api.trello.com/1/members/me?boards=open'
+  
+ Test Case 1: Make sure the response is "200 OK".
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass 
+ ------------------------------------------------------
+ Test Case 2: Make sure that the number of boards in the response is above 1.
+ Expected Result: Make sure that the number of boards in the response is above 1.
+ Actual Result:  Same Expected
+ Status: Pass 
+ ----------------------------------------------------------------------------------------------------
+ Delete a Board
+ curl --request DELETE \
+  --url 'https://api.trello.com/1/boards/{id}?key=APIKey&token=APIToken'
+  
+  
+ Test Case 1: Make sure the response is "200 OK".
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass 
+ 
+Test Case 2:  Response Body should contain a meaningful message like "board is removed successfully".
+ Expected Result: Response Body should contain a meaningful message like "board is removed successfully".
+ Actual Result:  "_value": null with status code 200 OK
+ Status: Fail 
+
+ Test Case 3: You need to make sure that this subobject is shown inside the response (which contains boards)
+     "boards": [
+        {
+            "id": "631cb0b8876f8e00b62c4ac8",
+            "name": "new-board",
+            "closed": false,
+            "idOrganization": "631377c9c3524500cb59afcd",
+            "pinned": false
+        },
+        {
+            "id": "631cd6c13c8eb60052451b66",
+            "name": "new-board",
+            "closed": false,
+            "idOrganization": "631377c9c3524500cb59afcd",
+            "pinned": false
+        },
+        {
+            "id": "631cd79196a0c3015d9949fc",
+            "name": "new-board",
+            "closed": false,
+            "idOrganization": "631377c9c3524500cb59afcd",
+            "pinned": false
+        }
+    ]
+  
+ -----------------------------------------------------
+  Create List
+  curl --request POST \
+  --url 'https://api.trello.com/1/lists?name={name}&idBoard=5abbe4b7ddc1b351ef961414&key=APIKey&token=APIToken'
+  
+ Test Case 1: Make sure the response is "200 OK".
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass 
+ 
+ 
+ Test Case 2: Verify the following keys exist in the response regardless of what the value
+ Expected Result: Keys (id , name , idBoard) are returned successfully
+ Actual Result: Same Expected
+ Status: Pass 
+ 
+ 
+ Test Case 3: Verify that the closed is false.
+ Expected Result: thr Key of closed is false
+ Actual Result: Same Expected
+ Status: Pass 
+
+ Test Case 4: Verify that the limits are empty object {}.
+  Expected Result: Key of limits are empty object {}.
+ Actual Result: Same Expected
+ Status: Pass 
+ 
+ -----------------------------------------------------------------------------------------------------------------
+ 
+ Get All lists 
+ curl --request GET \
+  --url 'https://api.trello.com/1/boards/{id}/lists?key=APIKey&token=APIToken' \
+  --header 'Accept: application/json'
+  
+  
+ Test Case 1: Make sure the response is "200 OK".
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass 
+ 
+ 
+ Test Case 2: Verify lists in the response is 3 [default lists are To Do, Doing, Done].
+ Expected Result: the default lists are  To Do, Doing, Done].
+ Actual Result: Same Expected
+ Status: Pass 
+ 
+ 
+-------------------------------------------------------------------------------------------------------------------------------------
+Archive or Unarchive List
+curl --request PUT \
+  --url 'https://api.trello.com/1/lists/{id}/closed?key=APIKey&token=APIToken'
+  
+ Test Case 1: Make sure the response is "200 OK".
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass 
+ 
+ Test Case 2: verify the response header has "Set-Cookie" Key
+ Expected Result: the header is exist
+ Actual Result: Same Expected
+ Status: Pass 
+ 
+ Test Case 3: verify the value of "Set-Cookie" contains "isEnterpriseAdmin%3Dfalse"
+ Expected Result: the value is incuded
+ Actual Result: Same Expected
+ Status: Pass 
+ 
+ Test Case 4:  Verify the value is false in the response -- So, it is unarchived
+ Expected Result: the value is incuded
+ Actual Result: Same Expected
+ Status: Pass
+ 
+ Test Case 5:   Verify the value key is true in the response -- So, it is archived
+
+ Expected Result: the value is incuded
+ Actual Result: Same Expected
+ Status: Fail  
